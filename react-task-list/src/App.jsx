@@ -77,14 +77,14 @@ const tasks = [
 
 function App() {
 
-  // array di oggetti con stato completato
-  const firstList = tasks.filter((curtask) => curtask.state === "completed");
+  // Array di oggetti con stato diverso da completo
+  const firstList = tasks.filter((curtask) => curtask.state !== "completed");
 
-  // array di oggetti con stato diverso da completo
-  const secondList = tasks.filter((curtask) => curtask.state !== "completed");
+  // Array di oggetti con stato completato
+  const secondList = tasks.filter((curtask) => curtask.state === "completed");
 
 
-  //array liste da firstlist tramite map
+  // Mappa l'array firstList per creare elementi JSX <li> per ogni oggetto
   const firstListJsx = firstList.map((curObj) => (
     <li key={curObj.id}>
       <h3>{curObj.title} <span>- {curObj.state}</span></h3>
@@ -93,6 +93,7 @@ function App() {
     </li>
   ))
 
+  // Mappa l'array secondtList per creare elementi JSX <li> per ogni oggetto
   const secondListJsx = secondList.map((curObj) => (
     <li key={curObj.id}>
       <h3>{curObj.title} <span>-{curObj.state}</span> </h3>
@@ -107,16 +108,27 @@ function App() {
 
   return (
     <>
-    <h1 className="title">Task Manager</h1>
-      <h2>Current Tasks ({secondListJsx.length})</h2>
-      <ul>
-        {secondListJsx}
-      </ul>
+
+    <div className="title-section">
+      <h1>Task Manager</h1>
+    </div>
+
+      <div className="tasks-list">
+        <h2 className="title-list">Current Tasks ({secondListJsx.length})</h2>
+        <ul>
+          {firstListJsx}
+        </ul>
+      </div>
+
       <hr />
-      <h2>Completed Task ({firstListJsx.length})</h2>
-      <ul>
-        {firstListJsx}
-      </ul>
+
+      <div className="tasks-list">
+        <h2 className="title-list">Completed Task ({firstListJsx.length})</h2>
+        <ul>
+          {secondListJsx}
+        </ul>
+      </div>
+      
     </>
   )
 }

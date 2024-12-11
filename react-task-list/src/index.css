@@ -1,1 +1,27 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+
+.title-section{
+    background-color: #45e8ba;
+    padding: 20px;
+}
+
+.tasks-list{
+    padding: 20px;
+   line-height: 30px;
+}
+
+
+ul{
+ list-style: none;
+}
+
+
+.title-list{
+    margin-bottom: 20px;
+}
