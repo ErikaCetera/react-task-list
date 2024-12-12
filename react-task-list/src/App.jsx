@@ -1,77 +1,6 @@
 
 
-const tasks = [
-  {
-    id: 1,
-    title: "Implementare la homepage",
-    priority: 1,
-    estimatedTime: 120,
-    state: "completed"
-  },
-  {
-    id: 2,
-    title: "Sviluppare il menu di navigazione",
-    priority: 2,
-    estimatedTime: 60,
-    state: "completed"
-  },
-  {
-    id: 3,
-    title: "Creare il footer del sito",
-    priority: 3,
-    estimatedTime: 30,
-    state: "completed"
-  },
-  {
-    id: 4,
-    title: "Ottimizzare le performance",
-    priority: 1,
-    estimatedTime: 180,
-    state: "completed"
-  },
-  {
-    id: 5,
-    title: "Scrivere test per i componenti",
-    priority: 2,
-    estimatedTime: 90,
-    state: "completed"
-  },
-  {
-    id: 6,
-    title: "Implementare la pagina dei contatti",
-    priority: 3,
-    estimatedTime: 60,
-    state: "completed"
-  },
-  {
-    id: 7,
-    title: "Aggiungere animazioni CSS",
-    priority: 2,
-    estimatedTime: 30,
-    state: "backlog"
-  },
-  {
-    id: 8,
-    title: "Integrare l'API di autenticazione",
-    priority: 1,
-    estimatedTime: 120,
-    state: "in_progress"
-  },
-  {
-    id: 9,
-    title: "Aggiornare la documentazione",
-    priority: 3,
-    estimatedTime: 60,
-    state: "backlog"
-  },
-  {
-    id: 10,
-    title: "Rifattorizzare il codice CSS",
-    priority: 2,
-    estimatedTime: 90,
-    state: "in_progress"
-  }
-];
+import tasks from "../data/data.js"
 
 
 
@@ -84,51 +13,43 @@ function App() {
   const secondList = tasks.filter((curtask) => curtask.state === "completed");
 
 
-  // Mappa l'array firstList per creare elementi JSX <li> per ogni oggetto
-  const firstListJsx = firstList.map((curObj) => (
-    <li key={curObj.id}>
-      <h3>{curObj.title} <span>- {curObj.state}</span></h3>
-      <p>Priority: {curObj.priority}</p>
-      <p>Est. timer: {curObj.estimatedTime}</p>
-    </li>
-  ))
-
-  // Mappa l'array secondtList per creare elementi JSX <li> per ogni oggetto
-  const secondListJsx = secondList.map((curObj) => (
-    <li key={curObj.id}>
-      <h3>{curObj.title} <span>-{curObj.state}</span> </h3>
-      <p>Priority: {curObj.priority}</p>
-      <p>Est.timer: {curObj.estimatedTime}</p>
-    </li>
-  ))
-
-
-
-
+  // Mappa l'array per creare elementi JSX <li> per ogni oggetto
+  const ListJsx = (array) => {
+    return array.map((curObj) => (
+      <li key={curObj.id}>
+        <h3>{curObj.title} <span className={`${curObj.state}`}> {curObj.state}</span> </h3>
+        <p>Priority: {curObj.priority}</p>
+        <p>Est. timer: {curObj.estimatedTime}</p>
+      </li>
+    ))
+  }
 
   return (
     <>
 
-    <div className="title-section">
-      <h1>Task Manager</h1>
-    </div>
+      <header className="title-section">
+        <h1>Task Manager</h1>
+      </header>
 
-      <div className="tasks-list">
-        <h2 className="title-list">Current Tasks ({secondListJsx.length})</h2>
-        <ul>
-          {firstListJsx}
-        </ul>
-      </div>
+      <main>
+        
+        <section className="tasks-list">
+          <h2 className="title-list">Current Tasks ({firstList.length})</h2>
+          <ul>
+            {ListJsx(firstList)}
+          </ul>
+        </section>
 
-      <hr />
+        <hr />
 
-      <div className="tasks-list">
-        <h2 className="title-list">Completed Task ({firstListJsx.length})</h2>
-        <ul>
-          {secondListJsx}
-        </ul>
-      </div>
-      
+        <section className="tasks-list">
+          <h2 className="title-list">Completed Task ({secondList.length})</h2>
+          <ul>
+            {ListJsx(secondList)}
+          </ul>
+        </section>
+
+      </main>
     </>
   )
 }

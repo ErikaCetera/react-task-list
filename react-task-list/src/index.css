@@ -25,3 +25,15 @@ ul{
 .title-list{
     margin-bottom: 20px;
 }
+
+.completed{
+    background-color: #18eb18;
+}
+
+.in_progress{
+    background-color: rgb(252, 207, 62);
+}
+
+.backlog{
+    background-color: rgb(243, 73, 73);
+}
